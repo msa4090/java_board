@@ -9,7 +9,34 @@ public class HomepageClass {
 	private String writer;   	// 게시물 작성자
 	private String pw;			// 게시물 비밀번호
 	private int commnets_index; // 댓글 번호	
-	ArrayList<String> commentList = new ArrayList(); // 댓글 리스트
+	private String date_time;	// 게시물 작성 일시
+	private int content_like;	// 해당 게시물 좋아요
+	private int content_unlike; // 해당 게시물 싫어요
+	ArrayList<String[]> commentList = new ArrayList(); // 댓글 리스트
+	
+	public int getContent_unlike() {
+		return content_unlike;
+	}
+	
+	public void setContent_unlike(int content_unlike) {
+		this.content_unlike = content_unlike;
+	}
+	
+	public int getContent_like() {
+		return content_like;
+	}
+	
+	public void setContent_like(int content_like) {
+		this.content_like = content_like;
+	}
+	
+	public String getDate_time() {
+		return date_time;
+	}
+	
+	public void setDate_time(String date_time) {
+		this.date_time = date_time;
+	}
 	
 	public int getCommnets_index() {
 		return commnets_index;
@@ -19,11 +46,11 @@ public class HomepageClass {
 		this.commnets_index = commnets_index;
 	}
 
-	public ArrayList<String> getCommentList() {
+	public ArrayList<String[]> getCommentList() {
 		return commentList;
 	}
 
-	public void setCommentList(ArrayList<String> commentList) {
+	public void setCommentList(ArrayList<String[]> commentList) {
 		this.commentList = commentList;
 	}
 
