@@ -1,0 +1,18 @@
+package test;
+
+import java.util.ArrayList;
+
+public class ArrayTest {
+	
+	public static void main(String[] args) {
+		
+		ArrayList<Integer[]> arr = new ArrayList<>();
+		int[] arr1 = {1, 2, 3, 4, 5};
+		arr.add(arr1);
+		
+		for(int i = 0; i < arr.size(); i++) {
+			System.out.println(arr.get(i)[0]);
+		}
+	}
+
+}

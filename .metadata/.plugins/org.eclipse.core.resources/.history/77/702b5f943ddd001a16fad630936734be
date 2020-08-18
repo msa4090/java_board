@@ -1,0 +1,16 @@
+package home;
+
+import java.util.*;
+
+public class DetailPage {
+	Scanner sc = new Scanner(System.in);
+	private int comment_count = 1;
+	
+	// 댓글 달기
+	String addComments() {
+		System.out.println("댓글을 입력하세요.");		
+		
+		return " " + comment_count++ + ") "  + sc.nextLine();
+	}	
+}
+

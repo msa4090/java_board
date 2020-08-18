@@ -1,0 +1,35 @@
+package home;
+
+import java.util.*;
+
+public class Home {
+		
+	public static void main(String[] args) {
+		
+		HomepageManager home = new HomepageManager();		
+		Scanner sc = new Scanner(System.in);
+		
+		while(true) {
+			System.out.println("명령어를 입력하세요. [add, all, find, exit]");
+			
+			if(str.equals("add")) {
+				home.add();	
+			}
+			
+			if(str.equals("all")) {
+				home.printPage();
+			}
+			
+			if(str.equals("find")) {
+				home.findPage();
+			}
+			
+			if(str.equals("exit")) {
+				System.out.println("종료");
+				break;
+			}
+		}
+		
+	}
+	
+}

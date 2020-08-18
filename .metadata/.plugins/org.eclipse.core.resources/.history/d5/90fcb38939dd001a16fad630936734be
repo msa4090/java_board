@@ -1,0 +1,24 @@
+package home;
+
+import java.util.ArrayList;
+
+public class DetailpageClass {
+	private String comments;	// 댓글
+	private int commnets_index; // 댓글 번호	
+
+	public int getCommnets_index() {
+		return commnets_index;
+	}
+
+	public void setCommnets_index(int commnets_index) {
+		this.commnets_index = commnets_index;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+	
+	public String setComments(String comments) {
+		this.comments = comments;
+	}
+}
