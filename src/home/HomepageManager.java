@@ -90,30 +90,36 @@ public class HomepageManager {
 		System.out.println("----------------------------------------------------------------------");
 		// 댓글 많은 순서
 		if(str.equals("comment")) {
-			// 2차원 어레이리스트 printList 는 게시판 번호와 list의 댓글 갯수를 가지고 있다. 
+			// 2차원 Arraylist printList 는 게시판 번호와 list의 댓글 갯수를 가지고 있다. 
 			for(int i = 0; i < list.size(); i++) {
 				printList.add(new Integer[] {i, list.get(i).getCommentList().size()});
 			}
+			
 			Collections.sort(printList, new Comparator<Integer[]>() {
 				@Override
 				public int compare(final Integer[] a1, final Integer[] a2) {
-					return Integer.compare(a1[0], a2[0]); 
+					return Integer.compare(a2[1], a1[1]); 
 				}
 			});
+			
 			for(int i = 0; i < list.size(); i++) {
-				System.out.println(list.get(printList.get(i)[0]).getIndex() + ". " + list.get(printList.get(i)[0]).getTitle() + " [" + list.get(printList.get(i)[0]).getCommentList().size() + "]   작성자 : " + list.get(printList.get(i)[0]).getWriter() + "  👍 : " + list.get(printList.get(i)[0]).getContent_like() + " 👎 : " + list.get(printList.get(i)[0]).getContent_unlike() + " 작성 일시 : " + list.get(printList.get(i)[0]).getDate_time());
+				if(list.get(printList.get(i)[0]).getCommentList().size() == 0) {
+					System.out.println(list.get(printList.get(i)[0]).getIndex() + ". " + list.get(printList.get(i)[0]).getTitle() + "       작성자 : " + list.get(printList.get(i)[0]).getWriter() + "  👍 : " + list.get(printList.get(i)[0]).getContent_like() + " 👎 : " + list.get(printList.get(i)[0]).getContent_unlike() + " 작성 일시 : " + list.get(printList.get(i)[0]).getDate_time());
+				} else {
+					System.out.println(list.get(printList.get(i)[0]).getIndex() + ". " + list.get(printList.get(i)[0]).getTitle() + " [" + list.get(printList.get(i)[0]).getCommentList().size() + "]   작성자 : " + list.get(printList.get(i)[0]).getWriter() + "  👍 : " + list.get(printList.get(i)[0]).getContent_like() + " 👎 : " + list.get(printList.get(i)[0]).getContent_unlike() + " 작성 일시 : " + list.get(printList.get(i)[0]).getDate_time());
+				}
 			}
 		}
 		// 좋아요 많은 순서
 		if(str.equals("like")) {
-			// 2차원 어레이리스트 printList 는 list의 좋아요 갯수와 게시판 번호를 가지고 있다. 
+
 			for(int i = 0; i < list.size(); i++) {
 				printList.add(new Integer[] {list.get(i).getContent_like(), i});
 			}
 		}
 		// 싫어요 많은 순서
 		if(str.equals("unlike")) {
-			// 2차원 어레이리스트 printList 는 list의 싫어요 갯수와 게시판 번호를 가지고 있다.
+
 			for(int i = 0; i < list.size(); i++) {
 				printList.add(new Integer[] {list.get(i).getContent_unlike(), i});
 			}
@@ -189,7 +195,10 @@ public class HomepageManager {
 						list.get(n - 1).setContent_like(1 + list.get(n - 1).getContent_like());
 						System.out.println("해당 게시물에 좋아요를 눌렀습니다.");
 					}
-					
+					// 싫어요 누르기
+					if(str.equals("unlike")) {
+						
+					}
 					// 초기화면으로 돌아가기
 					if(str.equals("exit")) {
 						System.out.println("초기화면으로 돌아갑니다.");
@@ -248,26 +257,6 @@ public class HomepageManager {
 				
 			} catch (Exception e) {
 				System.out.println("존재하지 않는 게시물입니다.");
-			}
-		}
-	}
-	
-	void sortPage() {
-		String str = "";
-		while(true) {
-			System.out.println("기준을 입력하세요. [comment, like, exit]");
-			
-			if(str.equals("comment")) {
-				
-			}
-			
-			if(str.equals("like")) {
-				
-			}
-			
-			if(str.equals("exit")) {
-				System.out.println("초기화면으로 돌아갑니다.");
-				break;
 			}
 		}
 	}
