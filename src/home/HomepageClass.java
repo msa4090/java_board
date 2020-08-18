@@ -12,7 +12,16 @@ public class HomepageClass {
 	private String date_time;	// 게시물 작성 일시
 	private int content_like;	// 해당 게시물 좋아요
 	private int content_unlike; // 해당 게시물 싫어요
-	ArrayList<String[]> commentList = new ArrayList(); // 댓글 리스트
+	private int pageCount;		// 해당 게시물 조회수
+	ArrayList<String[]> commentList = new ArrayList<String[]>(); // 댓글 리스트
+	
+	public int getPageCount() {
+		return pageCount;
+	}
+	
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
 	
 	public int getContent_unlike() {
 		return content_unlike;
