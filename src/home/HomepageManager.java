@@ -9,21 +9,22 @@ public class HomepageManager {
 	DetailPage dp = new DetailPage();
 	Scanner sc = new Scanner(System.in);
 	private int count = 1;	// 게시물 번호(index)는 1부터 시작	
-	ArrayList<Integer> pageList = new ArrayList();	
+	ArrayList<Integer> pageList = new ArrayList<Integer>();	
 	
+	// 테스트케이스 추가
 	void makeTestcase() {
 		int number = 0;
 		System.out.println("생성할 테스트케이스 갯수를 입력하세요.");
 		number = sc.nextInt();
 		sc.nextLine();
-		list.addAll(tc.testcase(number));
+		list.addAll(tc.Test(number));
 	}
-	
+	// 게시물 추가
 	void add() {		
 		HomepageClass h = new HomepageClass();
 		String check = "";
 		
-		System.out.println("제목을 입력하세요. : ");
+		System.out.println("제목을 입력하세요.");
 		h.setTitle(sc.nextLine());
 		check = h.getTitle().replace(" ", "");
 		if(check.equals("")) {
@@ -31,7 +32,7 @@ public class HomepageManager {
 			add();
 		}
 		
-		System.out.println("내용을 입력하세요. : ");
+		System.out.println("내용을 입력하세요.");
 		h.setContents(sc.nextLine());
 		
 		System.out.println("작성자 이름을 입력하세요. ");
@@ -63,7 +64,7 @@ public class HomepageManager {
 		
 		list.add(h);
 	}
-	
+	// 게시물 삭제
 	void delete() {
 		System.out.println("삭제하고 싶은 게시물 번호를 입력하세요.");
 		int n = sc.nextInt();
@@ -86,10 +87,11 @@ public class HomepageManager {
 			System.out.println("비밀번호가 다릅니다!");
 		} else {
 			System.out.println("해당 게시물이 삭제되었습니다.");
-			list.remove(n - 1);			
+			list.remove(n - 1);
+//			"나중에 삭제된 게시물입니다." 리스트 추가 
 		}
 	}
-	
+	// 게시물 출력 & 정렬
 	void sortPage() {
 		ArrayList<Integer[]> printList = new ArrayList<>();	
 		SortPage sp = new SortPage();
@@ -108,10 +110,10 @@ public class HomepageManager {
 		}
 		
 		while(true) {			
-			printAllPage(printList, pageList, viewPageNumber, start, nowPageNumber);
+			printNowPage(printList, pageList, viewPageNumber, start, nowPageNumber);
 			if(nowPageNumber == 1) {
 				System.out.println("수행하실 명령을 입력하세요. [comment, count, like, unlike, paging, next, exit]");
-			} else if(nowPageNumber == list.size()) {
+			} else if(nowPageNumber == pageList.size()) {
 				System.out.println("수행하실 명령을 입력하세요. [comment, count, like, unlike, paging, previous, exit]");
 			} else {
 				System.out.println("수행하실 명령을 입력하세요. [comment, count, like, unlike, paging, previous, next, exit]");
@@ -133,14 +135,14 @@ public class HomepageManager {
 				if(countSW == 0) countSW++;
 				else countSW--;			
 			}
-			// 좋아요 많은 순서, 낮은 순서
+			// 좋아요 많은 순서, 적은 순서
 			if(str.equals("like")) {
 				sortStandard = 3;
 				printList = sp.sortPage(printList, commentSW, sortStandard);				
 				if(likeSW == 0) likeSW++;
 				else likeSW--;					
 			}
-			// 싫어요 많은 순서
+			// 싫어요 많은 순서, 적은 순서
 			if(str.equals("unlike")) {
 				sortStandard = 4;
 				printList = sp.sortPage(printList, commentSW, sortStandard);				
@@ -151,19 +153,24 @@ public class HomepageManager {
 			if(str.equals("paging")) {
 				System.out.println("한 화면에 몇개의 페이지를 출력할 지 선택하세요. [5, 10, 15, 20]");
 				viewPageNumber = sc.nextInt();
-				sc.nextLine();				
-			}
-			if(str.equals("next")) {
-				if(list.size() < nowPageNumber + viewPageNumber) {
-					System.out.println("다음 페이지가 없습니다.");
-				} else {
-					nowPageNumber++;
-					start += viewPageNumber;
-					viewPageNumber += viewPageNumber;
+				sc.nextLine();		
+				// 페이지 리스트 재설정
+				pageList.clear();
+				page = printList.size();
+				for(int i = 0; page > 0; i++) {
+					page -= viewPageNumber;
+					pageList.add(i + 1);			
 				}
+				nowPageNumber = 1;
+				start = 0;
 			}
-			if(str.equals("pevious")) {
-				
+			if(str.equals("next") && nowPageNumber != pageList.size()) {				
+				nowPageNumber++;
+				start += viewPageNumber;				
+			}
+			if(str.equals("previous") && nowPageNumber != 1) {
+				nowPageNumber--;
+				start -= viewPageNumber;
 			}
 			// 초기화면으로 이동
 			if(str.equals("exit")) {
@@ -173,11 +180,11 @@ public class HomepageManager {
 		
 	}
 	// 한 페이지 출력
-	void printAllPage(ArrayList<Integer[]> printList, ArrayList<Integer> pageList, int viewPageNumber, int start, int nowPageNumber) {		
+	void printNowPage(ArrayList<Integer[]> printList, ArrayList<Integer> pageList, int viewPageNumber, int start, int nowPageNumber) {		
 		int	now = 0;
 		
 		System.out.println("------------------------------------------------------------------------------------------------------------");
-		for(int i = start; i < (viewPageNumber >= list.size() ? list.size() : viewPageNumber); i++) {
+		for(int i = start; i < (viewPageNumber * nowPageNumber >= list.size() ? list.size() : viewPageNumber * nowPageNumber); i++) {
 			if(list.get(printList.get(i)[0]).getCommentList().size() == 0) {
 				System.out.println(list.get(printList.get(i)[0]).getIndex() + ". " + list.get(printList.get(i)[0]).getTitle() + "       작성자 : " + list.get(printList.get(i)[0]).getWriter() + " 조회수 : " + list.get(printList.get(i)[0]).getPageCount() + "  좋아요 : " + list.get(printList.get(i)[0]).getContent_like() + " 싫어요 : " + list.get(printList.get(i)[0]).getContent_unlike() + " 작성 일시 : " + list.get(printList.get(i)[0]).getDate_time());
 			} else {
@@ -185,26 +192,21 @@ public class HomepageManager {
 			}			
 		}
 		System.out.println();
-		System.out.print("< ");
-		
+		System.out.print("< ");		
 		// 페이지 리스트 표시
 		for(int i = 0; i < pageList.size(); i++) {
 			if(pageList.get(i) == nowPageNumber) {				
-				System.out.print(pageList.get(i) + " ");	
 				now = i + 1;
-			} else {
-				System.out.print(pageList.get(i) + " ");
-			}
+			} 
+			System.out.print(pageList.get(i) + " ");	
 		}
 		System.out.println(">");
 		// 현재 페이지 표시
 		String str = "";
-
 		for(int i = 0; i < now; i++) {
 			str += "  ";
 		}
-		System.out.println(str + "^");
-		
+		System.out.println(str + "^");		
 		System.out.println("------------------------------------------------------------------------------------------------------------");
 	}
 	// 하나의 게시물만 출력
@@ -215,7 +217,7 @@ public class HomepageManager {
 			System.out.println(list.get(n).getIndex() + ". " + list.get(n).getTitle() + " [" + list.get(n).getCommentList().size() + "]   작성자 : " + list.get(n).getWriter() + " 조회수 : " + list.get(n).getPageCount() + "  좋아요 : " + list.get(n).getContent_like() + " 싫어요 : " + list.get(n).getContent_unlike() + " 작성 일시 : " + list.get(n).getDate_time());
 		}		
 	}
-	
+	// 게시판 상세조회
 	void readPage() {
 		if(list.isEmpty()) {
 			System.out.println("게시물이 없습니다.");
@@ -227,10 +229,10 @@ public class HomepageManager {
 			try {
 				// 해당 게시물 출력
 				System.out.println(list.get(n - 1).getIndex() + ". " + list.get(n - 1).getTitle() + "   작성자 : " + list.get(n - 1).getWriter() + " 조회수 : " + list.get(n - 1).getPageCount() + "  좋아요 : " + list.get(n - 1).getContent_like() + " 싫어요 : " + list.get(n - 1).getContent_unlike() + " 작성 일시 : " + list.get(n - 1).getDate_time());
-				System.out.println("   " + list.get(n - 1).getContents());
+				System.out.println("    " + list.get(n - 1).getContents());
 				// 댓글 출력
 				printCommentList(n - 1);
-				// 조회수 + 1
+				// 조회수 1 증가
 				list.get(n - 1).setPageCount(list.get(n - 1).getPageCount() + 1);
 				
 				String str = "";				
@@ -243,31 +245,13 @@ public class HomepageManager {
 						list.get(n - 1).setCommnets_index(1 + list.get(n - 1).getCommnets_index());
 						// 0 : 댓글 번호, 1 : 댓글 내용, 2 : 댓글 이름, 3 : 댓글 작성시간
 						list.get(n - 1).commentList.add(new String[] {Integer.toString(list.get(n - 1).getCommnets_index()), dp.addComments(), dp.addComments_name(), dp.addComments_date()});
-//						break;
 					}
 					if(str.equals("revise comment")) {
-						
 						int index = 0;
 						System.out.println("수정할 댓글 번호를 입력하세요 : ");
 						index = sc.nextInt();
-						sc.nextLine();
-						
-						String name = "";
-						System.out.println("댓글 작성자 이름을 입력하세요 : ");
-						name = sc.nextLine();	
-						
-						if(list.get(n - 1).getCommentList().get(index - 1)[0] == null) {
-							System.out.println("존재하지 않는 댓글입니다!");
-						} else if(!list.get(n - 1).getCommentList().get(index - 1)[2].equals(name)) {
-							System.out.println("댓글 작성자 이름이 다릅니다!");
-						} else {
-							System.out.println("현재 댓글 내용 : " + list.get(n - 1).getCommentList().get(index - 1)[2]);
-							System.out.println("수정할 댓글 내용 : ");							
-							
-							list.get(n - 1).getCommentList().get(index - 1)[1] = sc.nextLine();
-
-							System.out.println("댓글이 수정되었습니다.");
-						}
+						sc.nextLine();						
+						list.get(n - 1).getCommentList().get(index - 1)[1] = dp.reviseComment(list.get(n - 1), n - 1, index - 1);
 					}
 					// 좋아요 누르기
 					// 회원기능 구현되면 중복방지 추가
@@ -299,7 +283,7 @@ public class HomepageManager {
 			System.out.println(" " + list.get(n).getCommentList().get(i)[0] + ") " + list.get(n).getCommentList().get(i)[1] + " 작성자 : " + list.get(n).getCommentList().get(i)[2] + " 작성 일시 : " + list.get(n).getCommentList().get(i)[3]);		
 		}
 	}
-	
+	// 게시물의 제목, 내용 수정
 	void updatePage() {
 		if(list.isEmpty()) {
 			System.out.println("게시물이 없습니다.");
@@ -341,9 +325,10 @@ public class HomepageManager {
 			}
 		}
 	}
-	
-	void searchPage() {
+	// 특정 단어가 포함된 제목 검색
+	void searchTitle() {
 		String str = "";
+		int checkPage = 0;
 		
 		if(list.isEmpty()) {
 			System.out.println("게시물이 없습니다.");
@@ -355,8 +340,10 @@ public class HomepageManager {
 				for(int i = 0; i < list.size(); i++) {
 					if(list.get(i).getTitle().contains(str)) {
 						printPage(i);
+						checkPage++;
 					}
 				}
+				if(checkPage == 0) System.out.println("키워드가 들어가는 제목이 없습니다.");
 				System.out.println("------------------------------------------------------------------------------------------------------------");
 			} catch (Exception e) {
 				System.out.println("존재하지 않는 게시물입니다.");

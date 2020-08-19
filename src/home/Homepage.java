@@ -3,10 +3,6 @@ package home;
 import java.util.*;
 
 public class Homepage {
-	// todo list
-	// 1. next 할 시 마지막 페이지 출력이 안됨
-	// 2. previous 완성할 것
-	// 3. 1, 2 완성 후 페이징 테스트 해볼 것
 		
 	public static void main(String[] args) {		
 		HomepageManager home = new HomepageManager();		
@@ -16,11 +12,11 @@ public class Homepage {
 		while(true) {
 			System.out.println("명령어를 입력하세요. [test, add, del, list, read, update, search, exit]");
 			str = sc.nextLine();
-			// 테스트
+			// 테스트케이스 추가
 			if(str.equals("test")) {
 				home.makeTestcase();
 			}
-			// 게시판 추가
+			// 게시물 추가
 			if(str.equals("add")) {
 				home.add();	
 			}
@@ -42,7 +38,7 @@ public class Homepage {
 			}	
 			// 특정 단어가 포함된 제목 찾기
 			if(str.equals("search")) {
-				home.searchPage();
+				home.searchTitle();
 			}			
 			// 종료
 			if(str.equals("exit")) {

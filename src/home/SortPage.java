@@ -27,10 +27,4 @@ public class SortPage {
 		}		
 		return printList;		
 	}
-	// 한 화면에 몇개의 게시판을 출력하는지
-	void viewPage() {
-		
-	}
-	
-
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Testcase {
 	private int count = 1;
 	
-	ArrayList<HomepageClass> testcase(int n) {
+	ArrayList<HomepageClass> Test(int n) {
 		ArrayList<HomepageClass> testList = new ArrayList<>();
 		
 		for(int i = 0; i < n; i++) {
@@ -26,4 +26,5 @@ public class Testcase {
 		}
 		return testList;
 	}
+	
 }
