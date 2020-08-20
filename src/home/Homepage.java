@@ -1,20 +1,30 @@
 package home;
 
 import java.util.*;
+import member.MemberManager;
 
 public class Homepage {
 		
 	public static void main(String[] args) {		
-		HomepageManager home = new HomepageManager();		
+		HomepageManager home = new HomepageManager();	
+		MemberManager mm = new MemberManager();
 		Scanner sc = new Scanner(System.in);
 		String str = "";
 		
-		while(true) {
-			System.out.println("명령어를 입력하세요. [test, add, del, list, read, update, search, exit]");
+		while(true) {			
+			System.out.println("명령어를 입력하세요. [test, sign up, member list, add, del, list, read, update, search, help, exit]");
 			str = sc.nextLine();
 			// 테스트케이스 추가
 			if(str.equals("test")) {
-				home.makeTestcase();
+				home.makeTestdata();
+			}			
+			// 회원가입
+			if(str.equals("sign up")) {
+				mm.signUp();
+			}
+			// 회원목록 출력
+			if(str.equals("member list")) {
+				mm.printMemeberList();
 			}
 			// 게시물 추가
 			if(str.equals("add")) {
@@ -34,12 +44,16 @@ public class Homepage {
 			}
 			// 제목 수정, 내용 수정
 			if(str.equals("update")) {
-				home.updatePage();
+				home.updatePost();
 			}	
 			// 특정 단어가 포함된 제목 찾기
 			if(str.equals("search")) {
 				home.searchTitle();
-			}			
+			}
+			// 도움말 출력
+			if(str.equals("help")) {
+				
+			}
 			// 종료
 			if(str.equals("exit")) {
 				System.out.println("종료");

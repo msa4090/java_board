@@ -1,20 +1,26 @@
 package home;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Testcase {
+public class Testdata {
 	private int count = 1;
+	Scanner sc = new Scanner(System.in);
 	
-	ArrayList<HomepageClass> Test(int n) {
+	ArrayList<HomepageClass> Test() {
 		ArrayList<HomepageClass> testList = new ArrayList<>();
 		
-		for(int i = 0; i < n; i++) {
+		int number = 0;
+		System.out.println("생성할 테스트데이터 갯수를 입력하세요.");
+		number = sc.nextInt();
+		sc.nextLine();
+		
+		for(int i = 0; i < number; i++) {
 			HomepageClass h = new HomepageClass();		
 			
 			h.setTitle("제목" + count);
 			h.setContents("내용" + count);
 			h.setWriter("작성자" + count);
-			h.setPw("1111");
 			h.setIndex(count);
 			h.setContent_like(0);
 			h.setContent_unlike(0);

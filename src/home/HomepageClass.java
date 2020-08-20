@@ -7,7 +7,6 @@ public class HomepageClass {
 	private String contents;	// 게시물 내용
 	private int index;			// 게시물 번호
 	private String writer;   	// 게시물 작성자
-	private String pw;			// 게시물 비밀번호
 	private int commnets_index; // 댓글 번호	
 	private String date_time;	// 게시물 작성 일시
 	private int content_like;	// 해당 게시물 좋아요
@@ -69,14 +68,6 @@ public class HomepageClass {
 	
 	public void setWriter(String writer) {
 		this.writer = writer;
-	}
-	
-	public String getPw() {
-		return pw;
-	}
-	
-	public void setPw(String pw) {
-		this.pw = pw;
 	}
 
 	public int getIndex() {

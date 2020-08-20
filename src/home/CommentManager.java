@@ -3,7 +3,7 @@ package home;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class DetailPage {
+public class CommentManager {
 	Scanner sc = new Scanner(System.in);
 	
 	// 댓글 내용

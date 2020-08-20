@@ -27,4 +27,15 @@ public class SortPage {
 		}		
 		return printList;		
 	}
+	// 페이지 리스트
+	ArrayList<Integer> setPageList(int printListSize, int viewPageNumber) {
+		ArrayList<Integer> printList = new ArrayList<>();
+		int page = printListSize;
+		
+		for(int i = 0; page > 0; i++) {
+			page -= viewPageNumber;
+			printList.add(i + 1);
+		}
+		return printList;
+	}
 }
