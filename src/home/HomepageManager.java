@@ -2,6 +2,8 @@ package home;
 
 import java.util.*;
 import ViewPage.ViewPageManager;
+import JSON.WriteJSON;
+import JSON.ReadJSON;
 
 public class HomepageManager {
 	ArrayList<HomepageClass> list = new ArrayList<>();
@@ -12,6 +14,8 @@ public class HomepageManager {
 
 	ArrayList<Integer> pageList = new ArrayList<Integer>();	
 	ViewPageManager vpm = new ViewPageManager();
+	WriteJSON writeJson = new WriteJSON();
+	ReadJSON readJson = new ReadJSON();	
 	
 	// 테스트데이터 추가
 	void makeTestdata() {		
@@ -20,6 +24,7 @@ public class HomepageManager {
 	// 게시물 추가
 	void add() {		
 		vpm.add(list, count);
+		writeJson.PageWrite(list, count - 1);
 		count++;
 	}
 	// 게시물 삭제
@@ -77,7 +82,7 @@ public class HomepageManager {
 				if(unlikeSW == 0) unlikeSW++;
 				else unlikeSW--;	
 			}
-			// 한 화면에 몇개의 페이지를 출력하는지(기본 : 10)
+			// 한 화면에 몇개의 게시물을 출력하는지(기본 : 10개)
 			if(str.equals("paging")) {
 				viewPageNumber = vpm.paging();				
 				sc.nextLine();		
@@ -130,6 +135,7 @@ public class HomepageManager {
 						list.get(n - 1).setCommnets_index(1 + list.get(n - 1).getCommnets_index());
 						// 0 : 댓글 번호, 1 : 댓글 내용, 2 : 댓글 이름, 3 : 댓글 작성시간
 						list.get(n - 1).commentList.add(new String[] {Integer.toString(list.get(n - 1).getCommnets_index()), co.addComments(), co.addComments_name(), co.addComments_date()});
+						writeJson.CommentWrite(list, n - 1);
 					}
 					if(str.equals("revise comment")) {
 						int index = 0;
