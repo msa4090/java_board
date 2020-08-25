@@ -8,6 +8,9 @@ import home.HomepageClass;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 // GSON 사용
 
 public class WriteJSON {
@@ -16,17 +19,18 @@ public class WriteJSON {
 	public void PageWrite (ArrayList<HomepageClass> list, int n) {
 		JSONObject obj = new JSONObject();
 		
+		obj.put("게시물 번호", list.get(n).getIndex());
 		obj.put("제목", list.get(n).getTitle());
 		obj.put("내용", list.get(n).getContents());
-		obj.put("게시물 번호", list.get(n).getIndex());
 		obj.put("작성시간", list.get(n).getDate_time());
 		obj.put("좋아요 갯수", list.get(n).getContent_like());
 		obj.put("싫어요 갯수", list.get(n).getContent_unlike());
 		obj.put("댓글", 0);
 		arr.add(obj);
+		
 
 		try {
-			FileWriter file = new FileWriter("C:\\work\\sts-4.4.0.RELEASE-workspace\\home\\test.json");
+			FileWriter file = new FileWriter("C:\\eclipse\\workspace\\home\\test.json");
 			file.write(arr.toString());			
 			file.flush();
 //			file.close();
@@ -37,9 +41,12 @@ public class WriteJSON {
 	}
 	
 	public void CommentWrite(ArrayList<HomepageClass> list, int n) {	
-		JSONObject obj = new JSONObject();
+		Gson gson = new Gson();
+		JsonObject object = new JsonObject();
 		
-		addProperty("댓글", list.get(n).getCommentList().get(n)[1]);
+		object.addProperty("댓글", list.get(n).getCommentList().get(n)[1]);
+		
+		String json = gson.toJson(object);
 		
 		try {
 			FileWriter file = new FileWriter("C:\\work\\sts-4.4.0.RELEASE-workspace\\home\\test.json");
@@ -51,8 +58,4 @@ public class WriteJSON {
 		}
 	}
 	
-	public void addProperty(String property, String value) {
-		
-	}
-
 }
