@@ -1,0 +1,22 @@
+package home;
+
+public class DetailpageClass {
+	protected String comments;	// 댓글
+	protected int commnets_index; // 댓글 번호
+	
+	public int getCommnets_index() {
+		return commnets_index;
+	}
+
+	public void setCommnets_index(int commnets_index) {
+		this.commnets_index = commnets_index;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+	
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+}

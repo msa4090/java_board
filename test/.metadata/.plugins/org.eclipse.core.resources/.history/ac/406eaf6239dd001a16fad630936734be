@@ -1,0 +1,37 @@
+package home;
+
+import java.util.*;
+
+public class DetailPage {
+	Scanner sc = new Scanner(System.in);
+	private int comment_count = 0;
+	ArrayList<String> comment = new ArrayList<>();	
+
+	public ArrayList<String[]> getCommentList() {
+		return comment;
+	}
+
+	public void setCommentList(ArrayList<String[]> commentList) {
+		this.comment = comment;
+	}
+	
+	// 댓글 달기
+	ArrayList addComments() {
+		DetailpageClass dc = new DetailpageClass();
+		String str = "";
+		comment.clear();
+		System.out.println("댓글을 입력하세요.");
+		dc.setComments(sc.nextLine());
+		dc.setCommnets_index(comment_count);	
+		
+		str = " " + ") " + dc.setComments(sc.nextLine());
+		comment.add(str);
+		
+		return comment;
+	}
+	
+	void printComments() {
+		
+	}		
+}
+

@@ -1,7 +1,0 @@
-package home;
-
-public class Sortpage implements Comparable<Sortpage> {
-	
-	
-
-}

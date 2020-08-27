@@ -1,0 +1,10 @@
+package Controller;
+
+public class MemberController {
+	ArrayList<MemberClass> memberList = new MemberController();
+	
+	void signUp(){
+		
+	}
+
+}

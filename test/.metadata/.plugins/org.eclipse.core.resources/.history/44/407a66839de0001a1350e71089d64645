@@ -1,0 +1,9 @@
+package home;
+
+public class Sortpage implements Comparable<Sortpage> {
+	
+	public int comparTo(printList pl) {
+		return 0;
+	}
+	return 0;
+}

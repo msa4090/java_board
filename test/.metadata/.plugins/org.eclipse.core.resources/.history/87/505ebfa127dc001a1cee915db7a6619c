@@ -1,0 +1,49 @@
+package home;
+
+public class HomepageClass {
+	private String title;		// 게시물 제목
+	private String contents;	// 게시물 내용
+	private int index;			// 게시물 번호
+	private String writer;   	// 게시물 작성자
+	private int pw;				// 게시물 비밀번호
+	
+	public String getWriter() {
+		return writer;
+	}
+	
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	
+	public int getPw() {
+		return pw;
+	}
+	
+	public void setPw(int pw) {
+		this.pw = pw;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getContents() {
+		return contents;
+	}
+	
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+}

@@ -1,0 +1,48 @@
+package home;
+
+import java.util.*;
+
+public class Homepage {
+		
+	public static void main(String[] args) {
+		// todo 네이버 블로그 게시판 기능
+		// 공지 작성자 작성일 조회 좋아요(정렬) 페이지 검색(몇개씩 볼지)
+	
+		// 1. 댓글 따로따로
+		// 2. 게시물 삭제하면 댓글도 삭제
+		// 3. 삭제하면 게시물 번호 어찌할지
+		// 4. 댓글 내용 수정
+		// 5. 제목 수정, 본문 수정 (삽입)
+		
+		HomepageManager home = new HomepageManager();		
+		Scanner sc = new Scanner(System.in);
+		String str = "";
+		
+		while(true) {
+			System.out.println("명령어를 입력하세요. [add, del, all, find, exit]");
+			str = sc.nextLine();
+			// 게시판 추가
+			if(str.equals("add")) {
+				home.add();	
+			}
+			if(str.equals("del")) {
+				home.delete();
+			}
+			// 모든 게시물 출력
+			if(str.equals("all")) {
+				home.printPage();
+			}
+			// 특정 게시물 출력 -> 해당 게시물에 대한 세부 명령 입력가능
+			if(str.equals("find")) {
+				home.findPage();
+			}
+			// 종료
+			if(str.equals("exit")) {
+				System.out.println("종료");
+				break;
+			}
+		}
+		
+	}
+	
+}

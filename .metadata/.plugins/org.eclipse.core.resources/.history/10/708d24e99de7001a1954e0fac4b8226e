@@ -1,0 +1,12 @@
+package ViewMember;
+
+import java.util.ArrayList;
+import Member.MemberClass;
+
+public class ViewMemberSignUp extends ViewMember {
+
+	void addMember(ArrayList<MemberClass> memberList) {
+		
+	}
+	
+}

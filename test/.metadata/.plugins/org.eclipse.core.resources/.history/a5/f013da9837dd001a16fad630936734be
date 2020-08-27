@@ -1,0 +1,21 @@
+package home;
+
+import java.util.*;
+
+public class DetailPage {
+	Scanner sc = new Scanner(System.in);
+	private int comment_count = 0;
+
+	// 댓글 달기
+	String addComments(int n) {
+		DetailpageClass dc = new DetailpageClass();
+		System.out.println("댓글을 입력하세요.");
+		
+		return " " + String.valueOf(dc.setCommnets_index(comment_count)) + dc.setComments(sc.nextLine());;
+	}
+	
+	void printComments() {
+		
+	}		
+}
+

@@ -1,0 +1,24 @@
+package Controller;
+
+import java.util.Scanner;
+
+public class MainController {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = "";
+		System.out.println("수행하실 명령어를 입력하세요. (login : 로그인, sign up : 회원가입, exit : 종료)");
+		
+		while(true) {
+			if() {
+				
+			}
+			
+			if(str.equals("exit")) {
+				System.out.println("프로그램을 종료합니다.");
+				break;
+			}
+		}
+	}
+
+}

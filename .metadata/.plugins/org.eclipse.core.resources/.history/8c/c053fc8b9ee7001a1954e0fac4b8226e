@@ -1,0 +1,12 @@
+package ViewMember;
+
+import java.util.Scanner;
+import java.util.ArrayList;
+import Member.MemberClass;
+
+public class ViewMember {
+	Scanner sc = new Scanner(System.in);
+	
+	
+
+}

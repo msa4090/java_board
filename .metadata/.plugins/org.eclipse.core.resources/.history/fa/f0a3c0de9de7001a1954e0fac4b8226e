@@ -1,0 +1,11 @@
+package ViewMember;
+
+
+
+public class ViewMemberSignUp extends ViewMember {
+
+	void addMember(ArrayList<MemberClass> memberList) {
+		
+	}
+	
+}
