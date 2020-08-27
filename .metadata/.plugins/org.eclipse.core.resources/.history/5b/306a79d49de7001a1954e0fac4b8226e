@@ -1,0 +1,9 @@
+package ViewMember;
+
+public class ViewMemberSignUp extends ViewMember {
+
+	void addMember() {
+		
+	}
+	
+}

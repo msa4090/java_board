@@ -1,0 +1,12 @@
+package Controller;
+
+import java.util.ArrayList;
+
+public class MemberController {
+	ArrayListrrayList<MemberClass> memberList = new ArrayList<>();
+	
+	void signUp(){
+		
+	}
+
+}
