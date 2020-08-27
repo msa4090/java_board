@@ -17,19 +17,35 @@ public class TestJson {
 	Scanner sc = new Scanner(System.in);
 	JSONArray arr = new JSONArray();
 	ArrayList<TestClass> list = new ArrayList<>();
-	ArrayList<String> strList = new ArrayList<String>();
+	TestJson2 readJson = new TestJson2();
 	
-	void addList(TestClass member) {
-		list.add(member);		
-	}	
-	
-	void test() {
-		strList.add("hi");
-		System.out.println(strList);
+	boolean checkList() {
+		if(list.size() == readJson.read().size()) {			
+			return false; 
+		}		
+		return true;
 	}
 	
+	void addList() {		
+		if(!checkList()) {
+			System.out.println("이미 파일을 불러왔습니다.");
+		} else {			
+			list.addAll(readJson.read());
+			for(int i = 0; i < list.size(); i++) {
+				JsonObject object = new JsonObject();
+				object.addProperty("name", list.get(i).getName());
+				object.addProperty("id", list.get(i).getId());
+				object.addProperty("pw", list.get(i).getPw());				
+				arr.add(object);
+			}
+		}
+	}	
+	
 	void print() {
-		System.out.println(list);
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getId() + " " + list.get(i).getName());
+		}
+		System.out.println(arr.toString());
 	}
 
 	void write() {		
@@ -52,9 +68,34 @@ public class TestJson {
 		String json = gson.toJson(object);		
 		JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();		
 		arr.add(jsonObject);
+//		C:\\work\\sts-4.4.0.RELEASE-workspace\\home\\testJson.json
+//		C:\\eclipse\\\\workspace\\test\\testJson.json
 		
+		FileWrite();		
+	}
+	
+	void change() {
+		Gson gson = new Gson();
+		TestClass member = new TestClass();
+		JsonObject object = (JsonObject)arr.get(0);
+		String json = gson.toJson(object);	
+//		json <- 객체
+		JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+		String name = jsonObject.get("name").toString();
+
+//		이름 변경
+		object.addProperty("name", sc.nextLine());	
+		
+		FileWrite();
+		
+//		json -> 객체
+//		json = gson.toJson(object);
+//		member = gson.fromJson(json, TestClass.class);
+	}
+		
+	void FileWrite() {
 		try {
-			FileWriter file = new FileWriter("C:\\work\\sts-4.4.0.RELEASE-workspace\\home\\testJson.json");
+			FileWriter file = new FileWriter("C:\\eclipse\\workspace\\test\\testJson.json");
 			file.write(arr.toString());			
 			file.flush();
 			file.close();
@@ -62,33 +103,5 @@ public class TestJson {
 			e.printStackTrace();
 		}
 	}
-	
-	void change() {
-		System.out.println(arr);
-		Gson gson = new Gson();			
-		
-		TestClass member = new TestClass();
-		JsonObject object = (JsonObject)arr.get(0);
-//		JSONArray jsonArray = (JSONArray)object;
-		String json = gson.toJson(object);	
-//		// json <- 객체
-		JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-		String name = jsonObject.get("name").toString();
-
-//		// 이름 변경
-		object.addProperty("name", sc.nextLine());		
-		
-//		// json -> 객체
-		json = gson.toJson(object);
-		member = gson.fromJson(json, TestClass.class);
-	}
-	
-	public ArrayList<TestClass> getList() {
-		return list;
-	}
-	
-	public void setList(ArrayList<TestClass> list) {
-		this.list = list;
-	}
 }

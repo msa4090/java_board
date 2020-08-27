@@ -17,29 +17,31 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class TestJson2 {	
-	void read() {				
+public class TestJson2 {
+	
+	ArrayList<TestClass> read() {				
 		TestJson writeJson = new TestJson();
-		TestClass member = new TestClass();
+		ArrayList<TestClass> readArr = new ArrayList<>(); 
+		
 		try {
 			JSONParser parser = new JSONParser();
-			Object obj = parser.parse(new FileReader("C:\\work\\sts-4.4.0.RELEASE-workspace\\home\\testJson.json"));			
+			Object obj = parser.parse(new FileReader("C:\\eclipse\\workspace\\test\\testJson.json"));			
 			JSONArray jsonArray = (JSONArray)obj;
 			
 			for(int i = 0; i < jsonArray.size(); i++) {
+				TestClass member = new TestClass();
 				JSONObject jsonObject = (JSONObject)jsonArray.get(i);
-				System.out.println("name : " + jsonObject.get("name"));
-				System.out.println("id   : " + jsonObject.get("id"));
-				System.out.println("pw   : " + jsonObject.get("pw"));
 				member.setId(jsonObject.get("id").toString());
 				member.setName(jsonObject.get("name").toString());
 				member.setPw(jsonObject.get("pw").toString());
-				writeJson.addList(member);
-			}				
+				readArr.add(member);
+			}
 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		return readArr;
 		
 	}
 

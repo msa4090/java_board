@@ -9,19 +9,17 @@ public class TestMain {
 		Scanner sc = new Scanner(System.in);
 		String str = "";
 		TestJson writeJson = new TestJson();
-		TestJson2 readJson = new TestJson2();
 		
 		while(true) {
-			System.out.println("test, write, read, change, print, exit");
-			str = sc.nextLine();
-			
+			System.out.println("write, read, change, print, exit");
+			str = sc.nextLine();	
 			
 			if(str.equals("write")) {
 				writeJson.write();
 			}
 			
 			if(str.equals("read")) {
-				readJson.read();
+				writeJson.addList();
 			}
 			
 			if(str.equals("change")) {
