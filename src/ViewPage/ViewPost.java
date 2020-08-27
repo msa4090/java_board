@@ -2,7 +2,7 @@ package ViewPage;
 
 import java.util.ArrayList;
 
-import home.HomepageClass;
+import Homepage.HomepageClass;
 
 public class ViewPost  {
 	// 해당 게시물 출력

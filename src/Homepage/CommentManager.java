@@ -1,4 +1,4 @@
-package home;
+package Homepage;
 
 import java.text.SimpleDateFormat;
 import java.util.*;

@@ -2,7 +2,7 @@ package ViewPage;
 
 import java.util.ArrayList;
 
-import home.HomepageClass;
+import Homepage.HomepageClass;
 
 public class ViewComment {
 	// 해당 게시물의 모든 댓글 출력

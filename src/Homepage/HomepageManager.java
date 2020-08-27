@@ -1,4 +1,4 @@
-package home;
+package Homepage;
 
 import java.util.*;
 import ViewPage.ViewPageManager;
@@ -18,21 +18,21 @@ public class HomepageManager {
 	ReadJSON readJson = new ReadJSON();	
 	
 	// 테스트데이터 추가
-	void makeTestdata() {		
+	public void makeTestdata() {		
 		list.addAll(tc.Test());
 	}
 	// 게시물 추가
-	void add() {		
+	public void add() {		
 		vpm.add(list, count);
 		writeJson.PageWrite(list, count - 1);
 		count++;
 	}
 	// 게시물 삭제
-	void delete() {
+	public void delete() {
 		vpm.delete(list);
 	}
 	// 게시물 출력 & 정렬
-	void sortPage() {
+	public void sortPage() {
 		ArrayList<Integer[]> printList = new ArrayList<>();	
 		SortPage sp = new SortPage();
 		String str = "";		
@@ -109,7 +109,7 @@ public class HomepageManager {
 	}
 
 	// 게시판 상세조회
-	void readPage() {
+	public void readPage() {
 		if(list.isEmpty()) {
 			System.out.println("게시물이 없습니다.");
 		} else {
@@ -168,7 +168,7 @@ public class HomepageManager {
 	}	
 	
 	// 게시물의 제목, 내용 수정
-	void updatePost() {
+	public void updatePost() {
 		if(vpm.emptyCheck(list)) {
 			vpm.isNullPrint();
 		} else {
@@ -210,7 +210,7 @@ public class HomepageManager {
 		}
 	}
 	// 특정 단어가 포함된 제목 검색
-	void searchTitle() {
+	public void searchTitle() {
 		vpm.searchPage(list);
 	}
 	

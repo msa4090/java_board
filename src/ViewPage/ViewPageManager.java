@@ -2,7 +2,7 @@ package ViewPage;
 
 import java.util.ArrayList;
 
-import home.HomepageClass;
+import Homepage.HomepageClass;
 
 public class ViewPageManager {
 	ViewSortPage vSortp = new ViewSortPage();

@@ -1,0 +1,18 @@
+package ViewMember;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import Member.MemberClass;
+import Member.MemberManager;
+
+public class ViewMemberSignUp extends ViewMember {
+//	String str = "";
+//	Scanner sc = new Scanner(System.in);
+
+	void addMember(ArrayList<MemberClass> memberList) {
+		System.out.print("이름을 입력하세요 : ");
+		str = sc.nextLine();
+	}
+	
+}

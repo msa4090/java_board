@@ -3,7 +3,7 @@ package ViewPage;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import home.HomepageClass;
+import Homepage.HomepageClass;
 
 public class ViewSearchPage {
 	Scanner sc = new Scanner(System.in);

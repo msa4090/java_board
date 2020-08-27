@@ -1,4 +1,4 @@
-package home;
+package Homepage;
 
 import java.util.ArrayList;
 import java.util.Scanner;

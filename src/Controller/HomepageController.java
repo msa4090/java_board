@@ -1,11 +1,13 @@
-package home;
+package Controller;
 
 import java.util.*;
-import member.MemberManager;
 
-public class Homepage {
+import Homepage.HomepageManager;
+import Member.MemberManager;
+
+public class HomepageController {
 		
-	public static void main(String[] args) {		
+	void homepageController() {		
 		HomepageManager home = new HomepageManager();	
 		MemberManager mm = new MemberManager();
 		Scanner sc = new Scanner(System.in);

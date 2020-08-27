@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import home.HomepageClass;
+import Homepage.HomepageClass;
 
 public class ViewAddPost {
 	Scanner sc = new Scanner(System.in);

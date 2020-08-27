@@ -1,11 +1,19 @@
-package member;
+package Member;
 
 public class MemberClass {
+//	추가 리스트 : 게시물에 대한 좋아요, 싫어요 여부 | 회원가입 시간
 	private String userId;			// 회원 아이디
 	private String userName;		// 회원 이름
 	private String userPw;			// 회원 비밀번호
 	private int userIndex;			// 회원번호
+	private String Date;			// 회원가입 시간
 	
+	public String getDate() {
+		return Date;
+	}
+	public void setDate(String date) {
+		Date = date;
+	}
 	public int getUserIndex() {
 		return userIndex;
 	}
